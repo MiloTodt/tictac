@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Button extends Component {
+class Button extends React.Component {
   state = {
     results: []
   };
@@ -21,11 +21,14 @@ class Button extends Component {
         <div className="card container mt-3">
           <div className="card-body">
             <div className="row">
+            <div className="col-md-8 offset-md-2">
               <center>
                 <button className="btn btn-primary" onClick={this.callApi}>
                   Load players
                 </button>
               </center>
+              <br/>
+              <center>
               <table className="blueTable">
                 <tr>
                   <th>Name</th>
@@ -42,6 +45,8 @@ class Button extends Component {
                   </tr>
                 ))}
               </table>
+              < /center>
+              </div>
             </div>
           </div>
         </div>
