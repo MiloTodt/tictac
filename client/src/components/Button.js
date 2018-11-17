@@ -27,7 +27,7 @@ class Button extends Component {
                 </button>
                                 <br />
                             </center>
-                            <table>
+                            < table class = "blueTable" >
                             <tr>
                                 <th>Name</th>
                                 <th>Wins</th>
