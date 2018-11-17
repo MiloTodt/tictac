@@ -25,7 +25,6 @@ class Button extends Component {
                 <button className="btn btn-primary" onClick={this.callApi}>
                   Load players
                 </button>
-                <br />
               </center>
               <table className="blueTable">
                 <tr>
@@ -36,8 +35,8 @@ class Button extends Component {
                 </tr>
                 {this.state.results.map(obj => (
                   <tr>
-                    <td> {obj.name}</td>
-                    <td>{obj.wins}</td>
+                    <td> {obj.name} </td>
+                    <td> {obj.wins} </td>
                     <td> {obj.losses} </td>
                     <td> {obj.draws} </td>
                   </tr>
