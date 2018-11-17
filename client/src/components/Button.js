@@ -27,9 +27,29 @@ class Button extends Component {
                 </button>
                                 <br />
                             </center>
-                            <p className="m-5">
-                                {this.state.results.map(obj => <li>{obj.name}</li>)}
-                            </p>
+                            <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Wins</th>
+                                <th>Losses</th>
+                                <th>Draws</th>
+                            </tr>
+                                {
+                                    this.state.results.map(obj => < tr > < td > {
+                                        obj.name
+                                    } < /td>
+                                    <td>{obj.wins}</td>
+                                    < td > {
+                                        obj.losses
+                                    } < /td>
+                                    < td > {
+                                        obj.draws
+                                    } < /td>
+                                    </tr > )
+                                    
+                                }
+                            < /table>
+
                         </div>
                     </div>
                 </div>
