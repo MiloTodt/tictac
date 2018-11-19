@@ -18,6 +18,13 @@ class Api::V1::PlayersController < ApplicationController
   # POST /players
   def create
     @player = Player.new(player_params)
+    if player_params[:result] == 'win'
+      @player.wins += 1
+    elsif player_params[:result] == 'loss'
+      @player.losses += 1
+    elsif player_params[:result] == 'draw'
+      @player.draws += 1
+    end
 
     if @player.save
       render json: @player, status: :created, location: @player
@@ -28,7 +35,19 @@ class Api::V1::PlayersController < ApplicationController
 
   # PATCH/PUT /players/1
   def update
-    if @player.update(player_params)
+    @player = Player.find_by(name: player_params[:name])
+    if(@player.nil?)
+      @player = Player.new(player_params[:name])
+    end
+
+    if player_params[:result] == 'win'
+      @player.wins += 1
+    elsif player_params[:result] == 'loss'
+      @player.losses += 1
+    elsif player_params[:result] == 'draw'
+      @player.draws += 1
+    end
+    if @player.save
       render json: @player
     else
       render json: @player.errors, status: :unprocessable_entity
@@ -49,6 +68,6 @@ class Api::V1::PlayersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def player_params
-    params.require(:player).permit(:name, :wins, :losses, :draws)
+    params.require(:player).permit(:name, :result)
   end
 end

@@ -97,16 +97,16 @@ class Board extends React.Component {
     );
   }
 
-  sendWin = async winner => {
+  sendScore = async (winner, result) => {
     const api_call = await fetch("http://localhost:3001/api/v1/players", {
-      method: "POST",
+      method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        player: winner,
-        result: "win"
+        name: winner,
+        result: result
       })
     });
 
@@ -130,14 +130,18 @@ class Board extends React.Component {
 
     if (winner === "O") {
       status = "Winner: " + player_one;
-      this.sendWin(player_one);
+      this.sendScore(player_one, "win");
+      this.sendScore(player_two, "loss");
     } else if (winner === "X") {
       status = "Winner: " + player_two;
-      this.sendWin(player_two);
+      this.sendScore(player_two, "win");
+      this.sendScore(player_one, "loss");
     } else if (!arePlayersSet) {
       status = "";
     } else if (board_full === -1) {
       status = "The game is a draw!";
+      this.sendScore(player_two, "draw");
+      this.sendScore(player_one, "draw");
     } else if (this.state.xTurn == 0) {
       status = player_one + "'s turn!";
     } else {

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  match "/api/v1/players" => "players#update", :via => :put
   namespace :api do
     namespace :v1 do
       resources :players
