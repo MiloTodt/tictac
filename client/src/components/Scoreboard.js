@@ -1,9 +1,9 @@
 import React from "react";
+import axios from "axios";
 
 class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
-    this.getScores();
   }
   _state = {
     players: []
@@ -14,16 +14,16 @@ class Scoreboard extends React.Component {
   set state(value) {
     this._state = value;
   }
-
-  getScores = async () => {
-    const api_call = await fetch("http://localhost:3001/api/v1/players");
-
-    const data = await api_call.json();
-
-    this.setState({
-      players: data
-    });
-  };
+  componentDidMount() {
+    axios.get('http://localhost:3001/api/v1/players.json')
+      .then(response => {
+        console.log(response)
+        this.setState({
+          players: response.data
+        })
+      })
+      .catch(error => console.log(error))
+  }
 
   render() {
     return (
