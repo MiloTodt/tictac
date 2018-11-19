@@ -1,8 +1,12 @@
 import React from "react";
 
-class Button extends React.Component {
+class Scoreboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getScores();
+  }
   _state = {
-    results: []
+    players: []
   };
   get state() {
     return this._state;
@@ -11,23 +15,20 @@ class Button extends React.Component {
     this._state = value;
   }
 
-  callApi = async () => {
+  getScores = async () => {
     const api_call = await fetch("http://localhost:3001/api/v1/players");
 
     const data = await api_call.json();
 
     this.setState({
-      results: data
+      players: data
     });
   };
 
   render() {
     return (
       <>
-        <button className="btn btn-primary" onClick={this.callApi}>
-          Load players
-        </button>
-        <br />
+        <h1>Scoreboard</h1>
         <table className="blueTable">
           <tr>
             <th>Name</th>
@@ -35,7 +36,7 @@ class Button extends React.Component {
             <th>Losses</th>
             <th>Draws</th>
           </tr>
-          {this.state.results.map(obj => (
+          {this.state.players.map(obj => (
             <tr>
               <td> {obj.name} </td>
               <td> {obj.wins} </td>
@@ -49,4 +50,4 @@ class Button extends React.Component {
   }
 }
 
-export default Button;
+export default Scoreboard;
