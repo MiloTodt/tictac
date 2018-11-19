@@ -9,14 +9,6 @@ function Square(props) {
   );
 }
 
-function NewGame(props) {
-  return (
-    <button className="btn btn-primary" onClick={props.resetBoard}>
-      {"New Game"}
-    </button>
-  );
-}
-
 function calculateWinner(squares) {
   const lines = [
     //Left to right
@@ -78,9 +70,7 @@ class Board extends React.Component {
     });
     event.preventDefault();
   }
-  handleChange(event) {
-    this.setState({ player_one: event.target.value });
-  }
+
   renderSquare(i) {
     return (
       <Square
@@ -89,8 +79,6 @@ class Board extends React.Component {
       />
     );
   }
-
-  setName() {}
 
   resetBoard = () => {
     const squares = Array(9).fill(null);
@@ -109,6 +97,26 @@ class Board extends React.Component {
     );
   }
 
+  sendWin = async winner => {
+    const api_call = await fetch("http://localhost:3001/api/v1/players", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        player: winner,
+        result: "win"
+      })
+    });
+
+    const data = await api_call.json();
+
+    this.setState({
+      players: data
+    });
+  };
+
   render() {
     const winner = calculateWinner(this.state.squares);
     let status;
@@ -116,21 +124,21 @@ class Board extends React.Component {
     const player_two = this.state.player_two;
     const arePlayersSet = playersSet(player_one, player_two);
 
-    const board_full = this.state.squares.findIndex(
-      function (el) {
-        return (el === null);
-      }
-    );
+    const board_full = this.state.squares.findIndex(function(el) {
+      return el === null;
+    });
 
     if (winner === "O") {
       status = "Winner: " + player_one;
+      this.sendWin(player_one);
     } else if (winner === "X") {
       status = "Winner: " + player_two;
+      this.sendWin(player_two);
     } else if (!arePlayersSet) {
       status = "";
-    } else if(board_full === -1){
+    } else if (board_full === -1) {
       status = "The game is a draw!";
-    }else if (this.state.xTurn == 0) {
+    } else if (this.state.xTurn == 0) {
       status = player_one + "'s turn!";
     } else {
       status = player_two + "'s turn!";
@@ -162,9 +170,8 @@ class Board extends React.Component {
               {this.renderSquare(8)}
             </div>
           </div>
-
-          {this.renderResetBoard()}
-
+          {this.renderResetBoard()} {/* New game button */}
+          {/* Set Player names popup */}
           <Popup
             trigger={() => (
               <button className="btn btn-primary"> Set Names</button>
