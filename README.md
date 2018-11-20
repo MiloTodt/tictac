@@ -33,7 +33,7 @@ cd tictac
 bundle install
 rake db:setup
 rails server -p 3001
-``
+```
 ![alt text](https://i.imgur.com/gSktGvX.png "Back")
 
 * In the second terminal, navigate to /tictac/client
@@ -42,18 +42,3 @@ npm start
 ```
 ![alt text](https://i.imgur.com/Y3v6UwB.png "Front")
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
