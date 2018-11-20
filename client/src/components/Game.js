@@ -25,6 +25,7 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6]
   ];
+  //Game is won if all three squares on a line are the same
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -41,15 +42,17 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     const firstTurn = Math.random() < 0.5; //Randomizes who goes first
-    this.scoreboard = React.createRef();
+    this.scoreboard = React.createRef(); //Allows parent to call child functions
     this.state = {
       squares: Array(9).fill(null),
       xTurn: firstTurn,
       player_one: "",
       player_two: ""
     };
+    //Bind the form submit for setting player names
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  // Handle the clicking of board squares
   handleClick(i) {
     const squares = this.state.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
@@ -66,14 +69,15 @@ class Board extends React.Component {
       xTurn: !this.state.xTurn //toggle who's turn it is
     });
   }
+  //Submit function on form for setting player names
   handleSubmit(event) {
     this.setState({
       player_one: event.target.player_one.value,
       player_two: event.target.player_two.value
     });
-    event.preventDefault();
+    event.preventDefault(); //Prevents page reloading
   }
-
+  //draws a single square of the board
   renderSquare(i) {
     return (
       <Square
@@ -82,7 +86,7 @@ class Board extends React.Component {
       />
     );
   }
-
+  //new game button
   resetBoard = () => {
     const squares = Array(9).fill(null);
     const firstTurn = Math.random() < 0.5;
