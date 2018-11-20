@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
+import "./Game.css";
 
 function Square(props) {
   return (
@@ -166,6 +167,7 @@ class Board extends React.Component {
             trigger={() => (
               <button className="btn btn-primary"> Set Names</button>
             )}
+            modal
           >
             <div>
               <form onSubmit={this.handleSubmit}>
@@ -183,7 +185,11 @@ class Board extends React.Component {
                     name="player_two"
                   />
                 </label>
-                <input className="btn btn-primary" type="submit" value="Submit"  />
+                <input
+                  className="btn btn-primary"
+                  type="submit"
+                  value="Submit"
+                />
               </form>
             </div>
           </Popup>

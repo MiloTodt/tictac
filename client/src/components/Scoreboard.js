@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./Scoreboard.css";
 
 class Scoreboard extends React.Component {
   constructor(props) {
