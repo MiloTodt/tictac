@@ -116,7 +116,7 @@ class Scoreboard extends React.Component {
   render() {
     return (
       <>
-        <h1>Scoreboard</h1>
+        <h3 align="left">Scoreboard</h3>
         <table className="blueTable">
           <tr>
             <th>Name</th>
