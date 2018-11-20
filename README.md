@@ -41,3 +41,5 @@ npm start
 ```
 ![alt text](https://i.imgur.com/Y3v6UwB.png "Front")
 
+* This page should open in your browser
+![alt text](https://i.imgur.com/ymupNbC.png "Website")
