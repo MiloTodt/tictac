@@ -22,12 +22,14 @@
 table.blueTable {
   border: 1px solid #1c6ea4;
   background-color: #eeeeee;
-  width: 70%;
+  width: 100%;
   text-align: left;
   border-collapse: collapse;
-  align:center;
+  table-layout: fixed;
 }
-
+h4{
+  margin: 0px -10px;
+}
 table.blueTable td,
 table.blueTable th {
   border: 1px solid #aaaaaa;
@@ -43,6 +45,9 @@ table.blueTable tr:nth-child(even) {
 }
 table.blueTable tr:hover {
   background-color: #7a7bc5;
+}
+.blueTable row-name{
+  width: 1000px
 }
 
 .container{

@@ -116,10 +116,10 @@ class Scoreboard extends React.Component {
   render() {
     return (
       <>
-        <h3 align="left">Scoreboard</h3>
+        <h4 align="left">Scoreboard</h4>
         <table className="blueTable">
           <tr>
-            <th>Name</th>
+            <th className="row-name">Name</th>
             <th>Wins</th>
             <th>Losses</th>
             <th>Draws</th>
