@@ -160,7 +160,6 @@ class Board extends React.Component {
               </div>
             </div>
           </div>
-     
           {this.renderResetBoard()} {/* New game button */}
           {/* Set Player names popup */}
           <Popup
@@ -184,7 +183,7 @@ class Board extends React.Component {
                     name="player_two"
                   />
                 </label>
-                <input type="submit" value="Submit" />
+                <input className="btn btn-primary" type="submit" value="Submit"  />
               </form>
             </div>
           </Popup>
