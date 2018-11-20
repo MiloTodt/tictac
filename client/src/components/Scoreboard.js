@@ -77,62 +77,37 @@ class Scoreboard extends React.Component {
       let losses = player.losses;
       let draws = player.draws;
       if (result === "win") {
-        wins = wins + 1;
-        axios
-          .put("/api/v1/players/" + id, {
-            player: {
-              wins
-            }
-          })
-          .then(response => {
-            console.log(response);
-            players[id - 1] = { id, name, wins, losses, draws };
-            this.setState(() => ({
-              players,
-              editingPlayerId: null
-            }));
-          })
-          .catch(error => console.log(error));
+        wins++;
       } else if (result === "loss") {
-        losses = losses + 1;
-        axios
-          .put("/api/v1/players/" + id, {
-            player: {
-              losses
-            }
-          })
-          .then(response => {
-            console.log(response);
-            players[id - 1] = { id, name, wins, losses, draws };
-            this.setState(() => ({
-              players,
-              editingPlayerId: null
-            }));
-          })
-          .catch(error => console.log(error));
+        losses++;
       } else if (result === "draw") {
-        draws = draws + 1;
-        axios
-          .put("/api/v1/players/" + id, {
-            player: {
-              draws
-            }
-          })
-          .then(response => {
-            console.log(response);
-            players[id - 1] = { id, name, wins, losses, draws };
-            this.setState(() => ({
-              players,
-              editingPlayerId: null
-            }));
-          })
-          .catch(error => console.log(error));
+        draws++;
+      } else {
+        alert("Invalid result passed!");
+        return;
       }
+      axios
+        .put("/api/v1/players/" + id, {
+          player: {
+            wins,
+            losses,
+            draws
+          }
+        })
+        .then(response => {
+          console.log(response);
+          players[id - 1] = { id, name, wins, losses, draws };
+          this.setState(() => ({
+            players,
+            editingPlayerId: null
+          }));
+        })
+        .catch(error => console.log(error));
     }
   }
 
   bezos = () => {
-    this.updatePlayer("test8", "win");
+    this.updatePlayer("test8", "loss2");
   };
 
   renderBezos() {
