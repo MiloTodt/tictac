@@ -98,26 +98,6 @@ class Board extends React.Component {
     );
   }
 
-  sendScore = async (winner, result) => {
-    const api_call = await fetch("http://localhost:3001/api/v1/players", {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: winner,
-        result: result
-      })
-    });
-
-    const data = await api_call.json();
-
-    this.setState({
-      players: data
-    });
-  };
-
   render() {
     const winner = calculateWinner(this.state.squares);
     let status;
@@ -131,18 +111,12 @@ class Board extends React.Component {
 
     if (winner === "O") {
       status = "Winner: " + player_one;
-      this.sendScore(player_one, "win");
-      this.sendScore(player_two, "loss");
     } else if (winner === "X") {
       status = "Winner: " + player_two;
-      this.sendScore(player_two, "win");
-      this.sendScore(player_one, "loss");
     } else if (!arePlayersSet) {
       status = "";
     } else if (board_full === -1) {
       status = "The game is a draw!";
-      this.sendScore(player_two, "draw");
-      this.sendScore(player_one, "draw");
     } else if (this.state.xTurn == 0) {
       status = player_one + "'s turn!";
     } else {
@@ -153,7 +127,7 @@ class Board extends React.Component {
     if (arePlayersSet) {
       players = player_one + " Vs. " + player_two;
     } else {
-      players = "Set the names of both players before starting";
+      players = "Set the names of both players.";
     }
 
     return (
@@ -166,48 +140,54 @@ class Board extends React.Component {
             </div>
           </div>
           <br />
-          <div className="board-row">
-            <div className="col-sm-12 col-md-6 offset-md-3">
-              {this.renderSquare(0)} {this.renderSquare(1)}
-              {this.renderSquare(2)}
-            </div>
-          </div>
-          <div className="board-row">
-            <div className="col-sm-12 col-md-6 offset-md-3">
-              {this.renderSquare(3)} {this.renderSquare(4)}
-              {this.renderSquare(5)}
-            </div>
-          </div>
-          <div className="board-row">
-            <div className="col-sm-12 col-md-6 offset-md-3">
-              {this.renderSquare(6)} {this.renderSquare(7)}
-              {this.renderSquare(8)}
-            </div>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-sm-12">
-            {this.renderResetBoard()} {/* New game button */}
-            {/* Set Player names popup */}
-            <Popup
-              trigger={() => (
-                <button className="btn btn-primary"> Set Names</button>
-              )}
-            >
-              <div>
-                <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Player One
-                    <input type="text" name="player_one" />
-                    Player Two
-                    <input type="text" name="player_two" />
-                  </label>
-                  <input type="submit" value="Submit" />
-                </form>
+          <div className="card-game">
+            <div className="board-row">
+              <div className="col-sm-12 col-md-6 offset-md-3">
+                {this.renderSquare(0)} {this.renderSquare(1)}
+                {this.renderSquare(2)}
               </div>
-            </Popup>
+            </div>
+            <div className="board-row">
+              <div className="col-sm-12 col-md-6 offset-md-3">
+                {this.renderSquare(3)} {this.renderSquare(4)}
+                {this.renderSquare(5)}
+              </div>
+            </div>
+            <div className="board-row">
+              <div className="col-sm-12 col-md-6 offset-md-3">
+                {this.renderSquare(6)} {this.renderSquare(7)}
+                {this.renderSquare(8)}
+              </div>
+            </div>
           </div>
+     
+          {this.renderResetBoard()} {/* New game button */}
+          {/* Set Player names popup */}
+          <Popup
+            trigger={() => (
+              <button className="btn btn-primary"> Set Names</button>
+            )}
+          >
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <label>
+                  Player One
+                  <input
+                    type="text"
+                    className="player-entry"
+                    name="player_one"
+                  />
+                  Player Two
+                  <input
+                    type="text"
+                    className="player-entry"
+                    name="player_two"
+                  />
+                </label>
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
+          </Popup>
         </div>
       </>
     );

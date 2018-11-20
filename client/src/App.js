@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Scoreboard from "./components/Scoreboard.js";
 import Game from "./components/Game.js";
-import Popup from "reactjs-popup";
 import "./App.css";
 
 class App extends Component {

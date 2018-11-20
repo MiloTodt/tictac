@@ -33,7 +33,7 @@ h4{
 table.blueTable td,
 table.blueTable th {
   border: 1px solid #aaaaaa;
-  padding: 5px 5px;
+  padding: 5px 5px 5px 5px;
 }
 
 table.blueTable tbody td {
@@ -45,9 +45,6 @@ table.blueTable tr:nth-child(even) {
 }
 table.blueTable tr:hover {
   background-color: #7a7bc5;
-}
-.blueTable row-name{
-  width: 1000px
 }
 
 .container{
@@ -80,12 +77,22 @@ table.blueTable tr:hover {
   border: 1px solid rgb(0, 0, 0);
   background: rgb(245, 240, 240);
   width:100%;
+}
+.card-game{
+  display: inline-block;
+  width:260px;
+  text-align: center;
 
+}
+.card-score{
+  display: inline-block;
+  width:100%;
+  text-align: center;
 }
 
 .row {
   display: inline-block;
-  padding: 32px 48px 0px 48px;
+  padding: 48px 48px 0px 48px;
 }
 .row-head {
   display: inline-block;
@@ -145,4 +152,9 @@ button.btn-primary {
 button.btn-primary:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+input,player-entry{
+  width: 100%;
+    margin: 8px 0;
+    box-sizing: border-box;
 }

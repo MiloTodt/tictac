@@ -117,23 +117,25 @@ class Scoreboard extends React.Component {
     return (
       <>
         <h4 align="left">Scoreboard</h4>
-        <table className="blueTable">
-          <tr>
-            <th className="row-name">Name</th>
-            <th>Wins</th>
-            <th>Losses</th>
-            <th>Draws</th>
-          </tr>
-          {this.state.players.map(obj => (
-            <tr key={obj.id}>
-              <td> {obj.name} </td>
-              <td> {obj.wins} </td>
-              <td> {obj.losses} </td>
-              <td> {obj.draws} </td>
+        <div className="card-score">
+          <table className="blueTable">
+            <tr>
+              <th className="row-name">Name</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Draws</th>
             </tr>
-          ))}
-        </table>
-        {this.renderBezos()}
+            {this.state.players.map(obj => (
+              <tr key={obj.id}>
+                <td> {obj.name} </td>
+                <td> {obj.wins} </td>
+                <td> {obj.losses} </td>
+                <td> {obj.draws} </td>
+              </tr>
+            ))}
+          </table>
+        </div>
+        {/* {this.renderBezos()} */}
       </>
     );
   }
