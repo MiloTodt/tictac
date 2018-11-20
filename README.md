@@ -1,7 +1,5 @@
 # Tic Tac Toe
 
-## Description
-
 Tic Tac Toe game with scoreboard implimented with a React front end, Ruby On Rails REST API backend.
 ![alt text](https://i.imgur.com/ymupNbC.png "Website")
 
