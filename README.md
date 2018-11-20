@@ -2,6 +2,7 @@
 
 Tic Tac Toe game with scoreboard. 
 React front end, Ruby On Rails REST API backend.
+
 Try it live at: https://obscure-springs-73090.herokuapp.com/
 ![alt text](https://i.imgur.com/ymupNbC.png "Website")
 
