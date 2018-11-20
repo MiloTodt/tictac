@@ -30,40 +30,29 @@ class Scoreboard extends React.Component {
   }
   createPlayer(name, result) {
     //Create a new player, sending result of their first match
+    let wins = 0;
+    let losses = 0;
+    let draws = 0;
+
     if (result === "win") {
-      const wins = 1;
-      axios
-        .post("/api/v1/players", { player: { name, wins } })
-        .then(response => {
-          console.log(response);
-          const players = [...this.state.players, response.data];
-          this.setState(state => {
-            return { players: players };
-          });
-        });
+      wins++;
     } else if (result === "loss") {
-      const losses = 1;
-      axios
-        .post("/api/v1/players", { player: { name, losses } })
-        .then(response => {
-          console.log(response);
-          const players = [...this.state.players, response.data];
-          this.setState(state => {
-            return { players: players };
-          });
-        });
+      losses++;
     } else if (result === "draw") {
-      const draws = 1;
-      axios
-        .post("/api/v1/players", { player: { name, draws } })
-        .then(response => {
-          console.log(response);
-          const players = [...this.state.players, response.data];
-          this.setState(state => {
-            return { players: players };
-          });
-        });
+      draws++;
+    } else {
+      alert("Invalid result passed!");
+      return;
     }
+    axios
+      .post("/api/v1/players", { player: { name, wins, losses, draws } })
+      .then(response => {
+        console.log(response);
+        const players = [...this.state.players, response.data];
+        this.setState(state => {
+          return { players: players };
+        });
+      });
   }
   updatePlayer(name, result) {
     const id = this.playerIndex(name);
@@ -107,7 +96,7 @@ class Scoreboard extends React.Component {
   }
 
   bezos = () => {
-    this.updatePlayer("test8", "loss2");
+    this.updatePlayer("testss8", "loss");
   };
 
   renderBezos() {
