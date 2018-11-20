@@ -129,6 +129,7 @@ class Board extends React.Component {
       status = "The game is a draw!";
       this.child.scoreboard.updatePlayer(player_one, "draw");
       this.child.scoreboard.updatePlayer(player_two, "draw");
+      // eslint-disable-next-line
     } else if (this.state.xTurn == 0) {
       status = player_one + "'s turn!";
     } else {
