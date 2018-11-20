@@ -41,7 +41,7 @@ class Scoreboard extends React.Component {
     } else if (result === "draw") {
       draws++;
     } else {
-      alert("Invalid result passed!");
+      alert("Invalid game result passed!");
       return;
     }
     axios
@@ -72,7 +72,7 @@ class Scoreboard extends React.Component {
       } else if (result === "draw") {
         draws++;
       } else {
-        alert("Invalid result passed!");
+        alert("Invalid game result passed!");
         return;
       }
       axios
