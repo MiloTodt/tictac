@@ -158,53 +158,56 @@ class Board extends React.Component {
 
     return (
       <>
-          <div>
-            <div className="players"> {players} </div>
-            <div className="status"> {status} </div>
-            <br/>
-            <div className="board-row">
+        <div>
+          <div className="row-head">
+            <div className="card-head">
+              <div className="players"> {players} </div>
+              <div className="status"> {status} </div>
+            </div>
+          </div>
+          <br />
+          <div className="board-row">
             <div className="col-sm-12 col-md-6 offset-md-3">
               {this.renderSquare(0)} {this.renderSquare(1)}
               {this.renderSquare(2)}
-              </div>
-            </div>
-            <div className="board-row">
-              <div className="col-sm-12 col-md-6 offset-md-3">
-              {this.renderSquare(3)} {this.renderSquare(4)}
-              {this.renderSquare(5)}
-              </div>
-            </div>
-            <div className="board-row">
-              <div className="col-sm-12 col-md-6 offset-md-3">
-              {this.renderSquare(6)} {this.renderSquare(7)}
-              {this.renderSquare(8)}
-              </div>
             </div>
           </div>
-          <br/>
-          <div className="row">
-            <div className="col-sm-12">
-          
-          {this.renderResetBoard()} {/* New game button */}
-          {/* Set Player names popup */}
-          <Popup
-            trigger={() => (
-              <button className="btn btn-primary"> Set Names</button>
-            )}
-          >
-            <div>
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  Player One
-                  <input type="text" name="player_one" />
-                  Player Two
-                  <input type="text" name="player_two" />
-                </label>
-                <input type="submit" value="Submit" />
-              </form>
+          <div className="board-row">
+            <div className="col-sm-12 col-md-6 offset-md-3">
+              {this.renderSquare(3)} {this.renderSquare(4)}
+              {this.renderSquare(5)}
             </div>
-          </Popup>
+          </div>
+          <div className="board-row">
+            <div className="col-sm-12 col-md-6 offset-md-3">
+              {this.renderSquare(6)} {this.renderSquare(7)}
+              {this.renderSquare(8)}
+            </div>
+          </div>
         </div>
+        <br />
+        <div className="row">
+          <div className="col-sm-12">
+            {this.renderResetBoard()} {/* New game button */}
+            {/* Set Player names popup */}
+            <Popup
+              trigger={() => (
+                <button className="btn btn-primary"> Set Names</button>
+              )}
+            >
+              <div>
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                    Player One
+                    <input type="text" name="player_one" />
+                    Player Two
+                    <input type="text" name="player_two" />
+                  </label>
+                  <input type="submit" value="Submit" />
+                </form>
+              </div>
+            </Popup>
+          </div>
         </div>
       </>
     );
