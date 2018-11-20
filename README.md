@@ -6,29 +6,25 @@ React front end, Ruby On Rails REST API backend.
 
 ## Requirements
 
-* Frontend
-NodeJS
+* Frontend: NodeJS
 ```
 sudo apt install nodejs -y
 ```
 
-* Backend
-Ruby 2.5.3, Rails 5.2.1
+* Backend: Ruby 2.5.3, Rails 5.2.1
 
 ```
-
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 rvm install 2.5.3
 rvm use ruby-2.5.3
-gem install rails
 ```
-
 
 ## Running
 * Open two terminal windows, in the first run:
 ```
 git clone https://github.com/MiloTodt/tictac.git
 cd tictac
+gem install rails
 bundle install
 rake db:setup
 rails server -p 3001
