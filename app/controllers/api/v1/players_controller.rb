@@ -2,7 +2,6 @@
 
 class Api::V1::PlayersController < ApplicationController
   before_action :set_player, only: %i[show update destroy]
-
   # GET /players
   def index
     @players = Player.all
@@ -19,8 +18,9 @@ class Api::V1::PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
 
+
     if @player.save
-      render json: @player, status: :created, location: @player
+      render json: @player, status: :created, location: api_v1_player_url(@player)
     else
       render json: @player.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,8 @@ class Api::V1::PlayersController < ApplicationController
   def set_player
     @player = Player.find(params[:id])
   end
+
+
 
   # Only allow a trusted parameter "white list" through.
   def player_params

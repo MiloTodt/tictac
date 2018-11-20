@@ -15,6 +15,9 @@ class Scoreboard extends React.Component {
     this._state = value;
   }
   componentDidMount() {
+    this.downloadPlayers();
+  }
+  downloadPlayers() {
     axios
       .get("/api/v1/players.json")
       .then(response => {
@@ -25,10 +28,45 @@ class Scoreboard extends React.Component {
       })
       .catch(error => console.log(error));
   }
-  updatePlayer(id, result) {
-    const players = this.state.players;
-    const player = players[id - 1];
-    const name = player.name;
+  createPlayer(name, result) {
+    if (result === "win") {
+      const wins = 1;
+      axios.post("/api/v1/players", { player: { name, wins } }).then(response => {
+        console.log(response);
+        const players = [...this.state.players, response.data];
+        this.setState(state => {
+          return { players: players };
+        });
+      });
+    } else if (result === "loss") {
+      const losses = 1;
+      axios.post("/api/v1/players", { player: { name, losses } }).then(response => {
+        console.log(response);
+        const players = [...this.state.players, response.data];
+        this.setState(state => {
+          return { players: players };
+        });
+      });
+    } else if (result === "draw") {
+      const draws = 1;
+      axios.post("/api/v1/players", { player: { name, draws } }).then(response => {
+        console.log(response);
+        const players = [...this.state.players, response.data];
+        this.setState(state => {
+          return { players: players };
+        });
+      });
+    }
+  }
+  updatePlayer(name, result) {
+    const id = this.playerIndex(name);
+
+    if (id === 0) {
+      //New player, first create in database
+      this.createPlayer(name, result);
+    } else{
+    const players = this.state.players.slice();
+    const player = this.state.players[id - 1];
     let wins = player.wins;
     let losses = player.losses;
     let draws = player.draws;
@@ -85,10 +123,10 @@ class Scoreboard extends React.Component {
         .catch(error => console.log(error));
     }
   }
+}
 
   bezos = () => {
-    const index = this.playerIndex("Jeff Bezos")
-    this.updatePlayer(index, "win");
+    this.updatePlayer("test7", "win");
   };
 
   renderBezos() {
@@ -98,8 +136,8 @@ class Scoreboard extends React.Component {
       </button>
     );
   }
-  playerIndex(name){
-    const index = this.state.players.findIndex(function(player){
+  playerIndex(name) {
+    const index = this.state.players.findIndex(function(player) {
       return player.name === name;
     });
     return index + 1;
