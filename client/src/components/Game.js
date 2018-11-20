@@ -39,6 +39,7 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     const firstTurn = Math.random() < 0.5; //Randomizes who goes first
+    this.scoreboard = React.createRef();
     this.state = {
       squares: Array(9).fill(null),
       xTurn: firstTurn,

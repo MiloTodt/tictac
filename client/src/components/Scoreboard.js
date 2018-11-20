@@ -61,7 +61,7 @@ class Scoreboard extends React.Component {
       this.createPlayer(name, result);
     } else {
       const players = this.state.players.slice();
-      const player = this.state.players[id - 1];
+      const player = players[id - 1];
       let wins = player.wins;
       let losses = player.losses;
       let draws = player.draws;
