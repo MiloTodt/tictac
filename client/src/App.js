@@ -6,6 +6,10 @@ import './App.css'
 class App extends Component {
   render () {
     return (
+      <>
+      <head>
+          <title>Tic Tac Toe</title>
+      </head>
       <body>
         <div>
           <div className='container w3-teal '>
@@ -13,12 +17,12 @@ class App extends Component {
               <>
                 <h2>Tic-Tac-Toe</h2>
                 <Game />
-                <Scoreboard />
               </>
             </div>
           </div>
         </div>
       </body>
+      </>
     )
   }
 }

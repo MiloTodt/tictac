@@ -17,6 +17,7 @@ class Scoreboard extends React.Component {
   }
   componentDidMount() {
     this.downloadPlayers();
+    document.title = "Tic Tac Toe";
   }
   downloadPlayers() {
     axios

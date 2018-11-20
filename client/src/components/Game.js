@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "reactjs-popup";
+import Scoreboard from "../components/Scoreboard";
 import "./Game.css";
 
 function Square(props) {
@@ -112,12 +113,18 @@ class Board extends React.Component {
 
     if (winner === "O") {
       status = "Winner: " + player_one;
+      this.scoreboard.current.updatePlayer(player_one, "win");
+      this.scoreboard.current.updatePlayer(player_two, "loss");
     } else if (winner === "X") {
       status = "Winner: " + player_two;
+      this.scoreboard.current.updatePlayer(player_one, "loss");
+      this.scoreboard.current.updatePlayer(player_two, "win");
     } else if (!arePlayersSet) {
       status = "";
     } else if (board_full === -1) {
       status = "The game is a draw!";
+      this.child.scoreboard.updatePlayer(player_one, "draw");
+      this.child.scoreboard.updatePlayer(player_two, "draw");
     } else if (this.state.xTurn == 0) {
       status = player_one + "'s turn!";
     } else {
@@ -194,6 +201,8 @@ class Board extends React.Component {
             </div>
           </Popup>
         </div>
+        <br />
+        <Scoreboard ref={this.scoreboard} />
       </>
     );
   }
