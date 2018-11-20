@@ -2,24 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 h4{
   margin: 0px -10px;
 }
@@ -35,6 +17,7 @@ h4{
   text-align: center;
   
 }
+
 .card-body {
   display: inline-block;
   padding: 32px 48px 0px 48px;
@@ -45,31 +28,7 @@ h4{
   transition: 0.3s;
   border-radius: 20px; /* rounded corners */
   box-sizing: border-box;
-
-
 }
-.card-head {
-  display: inline-block;
-  padding: 10px 10px 0px 10px;
-  border: 1px solid rgb(0, 0, 0);
-  background: rgb(245, 240, 240);
-  width:100%;
-}
-.card-game{
-  display: inline-block;
-  width:260px;
-  text-align: center;
-
-}
-
-
-
-
-.status {
-  margin-bottom: 10px;
-}
-
-
 
 button.btn-primary {
   margin: 5px;
