@@ -7,22 +7,18 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <div>
-        <div className="card container mt-3">
-          <div className="card-body">
-            <center>
-              <div className="row">
-                <div className="col-md-8 offset-md-2">
-                  <>
-                    <Game />
-                    <Scoreboard />
-                  </>
-                </div>
-              </div>
-            </center>
+      <body>
+        <div>
+          <div className="container w3-teal ">
+            <div className="card-body">
+              <>
+                <Game />
+                <Scoreboard />
+              </>
+            </div>
           </div>
         </div>
-      </div>
+      </body>
     );
   }
 }
