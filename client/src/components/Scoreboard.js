@@ -45,7 +45,6 @@ class Scoreboard extends React.Component {
     axios
       .post("/api/v1/players", { player: { name, wins, losses, draws } })
       .then(response => {
-        console.log(response);
         const players = [...this.state.players, response.data];
         this.setState(state => {
           return { players: players };
@@ -83,7 +82,6 @@ class Scoreboard extends React.Component {
             }
           })
           .then(response => {
-            console.log(response);
             players[id - 1] = { id, name, wins, losses, draws };
             this.setState(() => ({
               players,
