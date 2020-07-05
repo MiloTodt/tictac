@@ -35,7 +35,7 @@ function calculateWinner(squares) {
 }
 
 function playersSet(player1, player2) {
-  return player1 !== "" && player2 !== "";
+  return player1 !== "" && player2 !== "" && player1 !== player2;
 }
 
 class Board extends React.Component {
